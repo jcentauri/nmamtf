@@ -110,10 +110,7 @@ function timesPlay() {
 };
 
 
-function pause() {
-  aud.pause();
 
-};
 
 
 
@@ -232,20 +229,6 @@ function stopTimer() {
 
 
 
-function myToggle() {
-
-  var u = document.getElementById("toggle");
-  if (u.style.display === "block") {
-    u.style.display = "none";
-    document.getElementById("btnToggle").innerHTML = "Play";
-    aud.pause();
-  } else {
-    u.style.display = "block";
-    document.getElementById("btnToggle").innerHTML = "Pause";
-    playlistloop();
-  }
-
-}
 
 
 
