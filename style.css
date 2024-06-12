@@ -20,13 +20,14 @@
 }
 
 
-#hideBtn {
-  display: none;
+#hide{
+ 
+display: none;
+
 }
 
-#toggle {
-  display: block;
-}
+
+
 
 #toggleV {
   display: block;
