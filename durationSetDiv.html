@@ -30,6 +30,7 @@
       display: none;
     }
 
+
     #toggle {
       display: block;
     }
@@ -49,7 +50,7 @@
 
   <div class="row">
     <div class="column" style="background-color:#FFF;">
-      <h2>Namo Amituofo</h2>
+      <h2>Na Mo A Mi Tuo Fo</h2>
 
       <button onclick="document.location='noOfTimesDiv.html'">No. Of Times</button>
       <button onclick="document.location='durationSetDiv.html'">Duration</button>
@@ -65,6 +66,7 @@
       <button type="button" onclick="timeFunction()">Set</button>
 
       <button onclick="startTimer()">Start</button>
+ 
       <button type="button" class="btnPlaylist" id="btnToggleU" onclick="myToggleU()">Pause</button>
 
 
@@ -72,6 +74,11 @@
       <p id="demo4"></p>
       <p id="secondsPassed"></p>
       <p id="demo5"></p>
+      <p id="demoy"></p>
+
+
+
+
 
     </div>
 
@@ -227,7 +234,7 @@
 
     function pause() {
       aud.pause();
-
+      clearInterval(myVar);
     };
 
 
@@ -300,11 +307,14 @@
 
         }
         timeleft -= 1;
+
       }, 1000);
 
 
-
     };
+
+ 
+
 
     var t = document.getElementById("time").value;
     q = t * 60
@@ -345,7 +355,9 @@
       document.getElementById("demo5").innerHTML = 'Count : ' + (c);
 
       Seconds = Seconds--;
-      document.getElementById("secondsPassed").innerHTML = "Time Left (secs.) : " + Seconds;
+
+      document.getElementById("secondsPassed").innerHTML = "Time Left : " + pad(parseInt(Seconds/3600)%24) + ":" + pad(parseInt(Seconds/60)%60) + ":" + pad(Seconds%60) ;
+
       myVar = setInterval(start, 1000);
       if (Seconds <= 0) {
         stopTimer();
@@ -359,7 +371,8 @@
     function start() {
       var t = document.getElementById("time").value;
       Seconds--;
-      document.getElementById("secondsPassed").innerHTML = "Time Left (secs.) : " + Seconds;
+      document.getElementById("secondsPassed").innerHTML = "Time Left : " + pad(parseInt(Seconds/3600)%24) + ":" + pad(parseInt(Seconds/60)%60) + ":" + pad(Seconds%60);
+
       if (Seconds <= 0) {
         stopTimer();
         document.getElementById("secondsPassed").innerHTML = t + " minute(s) reached";
@@ -367,9 +380,24 @@
       }
     }
 
+
+    function pad(val) {
+            var valString = val + "";
+            if(valString.length < 2)
+            {
+                return "0" + valString;
+            }
+            else
+            {
+                return valString;
+            }
+        }
+
+
+
     function stopTimer() {
       aud.pause();
-      clearInterval(myVar)
+      clearInterval(myVar);
 
     }
 
@@ -428,10 +456,10 @@
 
       } else {
 
-        stopTimer();
         document.getElementById("btnToggleU").innerHTML = "Resume";
         u.style.display = "block";
-
+        stopTimer();
+        clearInterval(myVar);
       }
 
     }
